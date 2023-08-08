@@ -14,6 +14,8 @@ const userController = {
             usuario.identificacion = params.identificacion;
             usuario.telefono = params.telefono;
 
+            //Probando
+
             var usuarioStored = await usuario.save();
 
             if (!usuarioStored) {
