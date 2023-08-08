@@ -3,7 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var app = express();
-var concesionario_routes=require('./routes/rutas');
+var concesionario_routes = require('./routes/rutas');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); //forzando
 
@@ -15,5 +15,11 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use('/',concesionario_routes);
-module.exports= app; //para exportar archivos 
+app.get('/', (req, res) => {
+    res.status(200).send(
+        "<h1>Pagina Funcionando</h1>"
+    );
+});
+
+app.use('/', concesionario_routes);
+module.exports = app; //para exportar archivos 

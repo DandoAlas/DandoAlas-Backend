@@ -1,14 +1,14 @@
 'use strict'
-var express= require('express');
-var ConcesionarioController= require('../controllers/dandoAlas');
+const express = require('express');
+const vueloController = require('../controllers/vuelos.controller');
 const userController = require('../controllers/usuario.controller');
-var router=express.Router();
+const router = express.Router();
 
-
-//pagina de inicio
-router.get('/home',ConcesionarioController.home); //para poder conectarme por primera vez
 //guardar informacion del vuelo
-router.post('/guardar-vuelo',ConcesionarioController.saveVuelo);
+router.post('/guardar-vuelo',vueloController.saveVuelo);
+
+//obtener informacion de los vuelos
+router.get('/obtener-vuelos',vueloController.getVuelos);
 
 //guardar informacion del usuario
 router.post('/guardar-usuario',userController.saveUsuario);
