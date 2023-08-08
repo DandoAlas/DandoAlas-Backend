@@ -53,8 +53,26 @@ const userController = {
         } catch (err) {
             return res.status(500).send({ message: 'Error al obtener los datos' });
         }
+    },
+    
+    //Actualizar usuarios
+    updateUsuario: async function (req, res) {
+        try {
+            var usuarioId = req.params.id;
+            var update = req.body;
+            var usuario = await Usuario.findByIdAndUpdate(usuarioId, update, {new: true}); // {new: true} retorna el objeto actualizado
+    
+            if (!usuario) {
+                return res.status(404).send({ message: 'No se encontró el usuario para actualizar' });
+            }
+            return res.status(200).send({ usuario });
+        } catch (err) {
+            return res.status(500).send({ message: 'Error al actualizar los datos' });
+        }
     }
-
+    
 }
+
+    
 
 module.exports = userController;

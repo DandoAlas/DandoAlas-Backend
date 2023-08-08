@@ -8,11 +8,13 @@ const usuarioSchema = new mongoose.Schema({
     correo: String,
     identificacion: String,
     telefono: String,
+    
     vueloReservados: [{
         numeroVuelo: Number,
         numeroAsiento: Number,
         estado: String,
     }],
+
     metodosDePago: [{
         cuetaPaypal: String,
         tarjetasCredito: [{

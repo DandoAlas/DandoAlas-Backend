@@ -13,6 +13,9 @@ router.post('/guardar-vuelo',ConcesionarioController.saveVuelo);
 //guardar informacion del usuario
 router.post('/guardar-usuario',userController.saveUsuario);
 
+//Actualizar los usuarios
+router.put('/actualizar-usuario/:id', userController.updateUsuario);
+
 //obtener informacion de los usuarios
 router.get('/obtener-usuarios',userController.getUsuarios);
 
