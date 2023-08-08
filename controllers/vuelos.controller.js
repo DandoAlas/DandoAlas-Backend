@@ -1,5 +1,5 @@
 'use strict'
-const vuelo = require('../models/vuelo');
+const Vuelo = require('../models/vuelo');
 var vueloController = {
     // Guardar vuelo
     saveVuelo: async function (req, res) {
@@ -11,13 +11,14 @@ var vueloController = {
             vuelo.origen = params.origen;
             vuelo.destino = params.destino;
             vuelo.fechaSalida = params.fechaSalida;
-            vuelo.fechaRegreso = params.fechaRegreso;
+            vuelo.fechaLlegada = params.fechaLlegada;
             vuelo.horaSalida = params.horaSalida;
-            vuelo.horaRegreso = params.horaRegreso;
+            vuelo.horaLlegada = params.horaLlegada;
             vuelo.duracionVuelo = params.duracionVuelo;
-            vuelo.numeroAsientos = params.numeroAsientos;
-            vuelo.precio = params.precio;
+            // vuelo.numeroAsientos = params.numeroAsientos;
+            // vuelo.precio = params.precio;
             vuelo.costoMaletaAdicional = params.costoMaletaAdicional;
+            vuelo.estado = params.estado;
             vuelo.disponibilidad = params.disponibilidad;
     
             var vueloStored = await vuelo.save();
