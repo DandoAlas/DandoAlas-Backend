@@ -13,8 +13,6 @@ const userController = {
             usuario.correo = params.correo;
             usuario.identificacion = params.identificacion;
             usuario.telefono = params.telefono;
-            usuario.vueloReservados = params.vueloReservados;
-            usuario.metodosDePago = params.metodosDePago;
 
             var usuarioStored = await usuario.save();
 
