@@ -22,4 +22,7 @@ router.get('/obtener-usuarios',userController.getUsuarios);
 //obtener informacion del usuario
 router.get('/obtener-usuario/:id?',userController.getUsuario);
 
+//Eliminar informacion de un usuario
+router.delete('/eliminar-usuario/:id', userController.deleteUsuario);
+
 module.exports = router;

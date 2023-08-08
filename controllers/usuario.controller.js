@@ -69,7 +69,23 @@ const userController = {
         } catch (err) {
             return res.status(500).send({ message: 'Error al actualizar los datos' });
         }
+    },
+
+    //Eliminar usuarios
+    deleteUsuario: async function (req, res) {
+        try {
+            var usuarioId = req.params.id;
+            var usuario = await Usuario.findByIdAndRemove(usuarioId);
+    
+            if (!usuario) {
+                return res.status(404).send({ message: 'No se encontró el usuario para eliminar' });
+            }
+            return res.status(200).send({ usuario });
+        } catch (err) {
+            return res.status(500).send({ message: 'Error al eliminar los datos' });
+        }
     }
+    
     
 }
 
