@@ -2,18 +2,26 @@
 const mongoose = require('mongoose');
 
 const vueloSchema = new mongoose.Schema({
+  // _id: mongoose.Schema.Types.ObjectId,
   numeroVuelo: Number,
   nombreAerolinea: String,
   origen: String,
   destino: String,
   fechaSalida: String,
-  fechaRegreso: String,
+  fechaLlegada: String,
   horaSalida: String,
-  horaRegreso: String,
+  horaLlegada: String,
   duracionVuelo: String,
-  numeroAsientos: Number,
-  precio: Number,
+  pasajeros: [
+    {
+      // pasajero_id: mongoose.Schema.Types.ObjectId,
+      identificacion: String,
+      numeroAsiento: Number,
+      costo: Number,
+    }
+  ],
   costoMaletaAdicional: Number,
+  estado: String,
   disponibilidad: Boolean
 });
 

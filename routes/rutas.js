@@ -1,38 +1,39 @@
-'use strict'
-var express= require('express');
-var ConcesionarioController= require('../controllers/dandoAlas');
+'use strict';
+const express = require('express');
+const router = express.Router();
+const vueloController = require('../controllers/vuelos.controller');
 const userController = require('../controllers/usuario.controller');
-var router=express.Router();
 
+//======== VUELOS =========//
 
-//Pagina de inicio
-//*************VUELOS**************** */
-
-
-router.get('/home',ConcesionarioController.home); //para poder conectarme por primera vez
 //guardar informacion del vuelo
-router.post('/guardar-vuelo',ConcesionarioController.saveVuelo);
+router.post('/guardar-vuelo',vueloController.saveVuelo);
 
-/*
 //obtener informacion de los vuelos
-router.get('/obtener-vuelos', ConcesionarioController.getVuelos);
+router.get('/obtener-vuelos',vueloController.getVuelos);
 
-//obtener informacion de los vuelo
-router.get('/obtener-vuelo/:id', ConcesionarioController.getVuelo);
-*/
+//obtener informacion del vuelo
+router.get('/obtener-vuelo/:id?',vueloController.getVuelo);
+
+//actualizar informacion del vuelo
+router.put('/actualizar-vuelo/:id?',vueloController.updateVuelo);
+
+//eliminar informacion del vuelo
+router.delete('/eliminar-vuelo/:id?',vueloController.deleteVuelo);
 
 //*************USUARIOS**************** */
+
 //guardar informacion del usuario
 router.post('/guardar-usuario',userController.saveUsuario);
-
-//Actualizar los usuarios
-router.put('/actualizar-usuario/:id', userController.updateUsuario);
 
 //obtener informacion de los usuarios
 router.get('/obtener-usuarios',userController.getUsuarios);
 
 //obtener informacion del usuario
 router.get('/obtener-usuario/:id?',userController.getUsuario);
+
+//Actualizar usuario
+router.put('/actualizar-usuario/:id', userController.updateUsuario);
 
 //Eliminar informacion de un usuario
 router.delete('/eliminar-usuario/:id', userController.deleteUsuario);

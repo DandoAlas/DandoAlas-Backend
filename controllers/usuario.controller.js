@@ -13,9 +13,8 @@ const userController = {
             usuario.correo = params.correo;
             usuario.identificacion = params.identificacion;
             usuario.telefono = params.telefono;
-
-            //Probando
-
+            //usuario.vueloReservados = params.vueloReservados;
+            //usuario.metodosDePago = params.metodosDePago
             var usuarioStored = await usuario.save();
 
             if (!usuarioStored) {
@@ -88,7 +87,5 @@ const userController = {
     
     
 }
-
-    
 
 module.exports = userController;
