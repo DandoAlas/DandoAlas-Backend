@@ -1,11 +1,11 @@
 
 'use strict'
-var mongoose = require('mongoose');
-var port = '3600';
+const mongoose = require('mongoose');
+const port = '3600';
+const app = require('./app')
+
 mongoose.promise = global.Promise;
-mongoose.set("strictQuery",false);
-var app = require('./app')
-// mongoose.connect('mongodb://127.0.0.1:27017/concesionario')
+mongoose.set("strictQuery", false);
 mongoose.connect('mongodb://127.0.0.1:27017/Areopuerto')
     .then(() => {
         console.log("Conexion a BDD");
