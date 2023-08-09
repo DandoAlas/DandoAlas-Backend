@@ -5,11 +5,23 @@ const userController = require('../controllers/usuario.controller');
 var router=express.Router();
 
 
-//pagina de inicio
+//Pagina de inicio
+//*************VUELOS**************** */
+
+
 router.get('/home',ConcesionarioController.home); //para poder conectarme por primera vez
 //guardar informacion del vuelo
 router.post('/guardar-vuelo',ConcesionarioController.saveVuelo);
 
+/*
+//obtener informacion de los vuelos
+router.get('/obtener-vuelos', ConcesionarioController.getVuelos);
+
+//obtener informacion de los vuelo
+router.get('/obtener-vuelo/:id', ConcesionarioController.getVuelo);
+*/
+
+//*************USUARIOS**************** */
 //guardar informacion del usuario
 router.post('/guardar-usuario',userController.saveUsuario);
 
