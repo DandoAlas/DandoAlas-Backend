@@ -8,9 +8,8 @@ const vueloSchema = new mongoose.Schema({
   origen: String,
   destino: String,
   fechaSalida: String,
-  fechaLlegada: String,
   horaSalida: String,
-  horaLlegada: String,
+  precio: Number,
   duracionVuelo: String,
   pasajeros: [
     {
