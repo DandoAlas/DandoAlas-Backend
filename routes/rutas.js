@@ -21,7 +21,7 @@ router.put('/actualizar-vuelo/:id?',vueloController.updateVuelo);
 //eliminar informacion del vuelo
 router.delete('/eliminar-vuelo/:id?',vueloController.deleteVuelo);
 
-//*************USUARIOS**************** */
+//======== USUARIOS =========//
 
 //guardar informacion del usuario
 router.post('/guardar-usuario',userController.saveUsuario);

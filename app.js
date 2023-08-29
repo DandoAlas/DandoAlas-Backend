@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 
 var app = express();
 var concesionario_routes = require('./routes/rutas');
+var authRoutes = require('auth/auth.routes');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); //forzando
 
