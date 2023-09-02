@@ -3,34 +3,42 @@ const express = require('express');
 const router = express.Router();
 const vueloController = require('../controllers/vuelos.controller');
 const userController = require('../controllers/usuario.controller');
+const authController = require('../auth/auth.controller');
+
+//======== LOGIN =========//
+//registrar usuario
+router.post('/register', authController.createUser);
+
+//login
+router.post('/login', authController.loginUser);
 
 //======== VUELOS =========//
 
 //guardar informacion del vuelo
-router.post('/guardar-vuelo',vueloController.saveVuelo);
+router.post('/guardar-vuelo', vueloController.saveVuelo);
 
 //obtener informacion de los vuelos
-router.get('/obtener-vuelos',vueloController.getVuelos);
+router.get('/obtener-vuelos', vueloController.getVuelos);
 
 //obtener informacion del vuelo
-router.get('/obtener-vuelo/:id?',vueloController.getVuelo);
+router.get('/obtener-vuelo/:id?', vueloController.getVuelo);
 
 //actualizar informacion del vuelo
-router.put('/actualizar-vuelo/:id?',vueloController.updateVuelo);
+router.put('/actualizar-vuelo/:id?', vueloController.updateVuelo);
 
 //eliminar informacion del vuelo
-router.delete('/eliminar-vuelo/:id?',vueloController.deleteVuelo);
+router.delete('/eliminar-vuelo/:id?', vueloController.deleteVuelo);
 
 //======== USUARIOS =========//
 
 //guardar informacion del usuario
-router.post('/guardar-usuario',userController.saveUsuario);
+router.post('/guardar-usuario', userController.saveUsuario);
 
 //obtener informacion de los usuarios
-router.get('/obtener-usuarios',userController.getUsuarios);
+router.get('/obtener-usuarios', userController.getUsuarios);
 
 //obtener informacion del usuario
-router.get('/obtener-usuario/:id?',userController.getUsuario);
+router.get('/obtener-usuario/:id?', userController.getUsuario);
 
 //Actualizar usuario
 router.put('/actualizar-usuario/:id', userController.updateUsuario);
