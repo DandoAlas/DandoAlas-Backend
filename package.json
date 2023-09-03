@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "En este repositorio, encontramos todo el backend de la aplicación DandoAlas en las que se encuentra todo lo que hay de tras.",
   "main": "index.js",
   "dependencies": {
     "abbrev": "^1.1.1",
@@ -108,5 +108,13 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DandoAlas/DandoAlas-Backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DandoAlas/DandoAlas-Backend/issues"
+  },
+  "homepage": "https://github.com/DandoAlas/DandoAlas-Backend#readme"
 }

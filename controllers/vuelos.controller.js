@@ -12,9 +12,8 @@ var vueloController = {
             vuelo.origen = params.origen;
             vuelo.destino = params.destino;
             vuelo.fechaSalida = params.fechaSalida;
-            vuelo.fechaLlegada = params.fechaLlegada;
             vuelo.horaSalida = params.horaSalida;
-            vuelo.horaLlegada = params.horaLlegada;
+            vuelo.precio = params.precio;
             vuelo.duracionVuelo = params.duracionVuelo;
             // vuelo.pasajeros.identificacion = params.identificacion;
             // vuelo.pasajeros.numeroAsiento = params.numeroAsiento;
@@ -44,6 +43,37 @@ var vueloController = {
             return res.status(500).send({ message: 'Error al obtener los datos' });
         }
     },
+    //obtener vuelo especifico, busqueda
+    getVueloInfo: function (req, res) {
+        var origen = req.query.origen;
+        var destino = req.query.destino;
+        var fechaSalida = req.query.fechaSalida;
+    
+        // Puedes validar aquí si al menos uno de los parámetros está presente
+    
+        var query = {};
+    
+        if (origen) {
+            query.origen = { $regex: origen, $options: 'i' };
+        }
+        if (destino) {
+            query.destino = { $regex: destino, $options: 'i' };
+        }
+        if (fechaSalida) {
+            query.fechaSalida = { $regex: fechaSalida, $options: 'i' };
+        }
+    
+        Vuelo.find(query)
+            .then(vuelos => {
+                if (!vuelos || vuelos.length === 0) {
+                    return res.status(404).send({ message: 'No se encontraron vuelos' });
+                }
+                return res.status(200).send({ vuelos });
+            })
+            .catch(err => {
+                return res.status(500).send({ message: 'Error al recuperar los datos' });
+            });
+    },    
 
     // Obtener vuelo
     getVuelo: async function (req, res) {
@@ -89,8 +119,22 @@ var vueloController = {
         } catch (err) {
             return res.status(500).send({ message: 'Error al eliminar los datos' });
         }
-    }
+    },
+    //ultimo vuelo
+    getUltimoNumeroVuelo: async function (req, res) {
+        try {
+            const ultimoVuelo = await Vuelo.findOne({}, { numeroVuelo: 1 }).sort({ numeroVuelo: -1 });
 
+            if (ultimoVuelo) {
+                res.json(ultimoVuelo.numeroVuelo);
+            } else {
+                res.json(0); // Si no hay vuelos guardados, devuelve 0 o el número que consideres apropiado
+            }
+        } catch (error) {
+            console.error('Error al obtener el último número de vuelo:', error);
+            res.status(500).json({ mensaje: 'Error al obtener el último número de vuelo' });
+        }
+    }
 
 }
 module.exports = vueloController;

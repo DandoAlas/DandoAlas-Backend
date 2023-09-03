@@ -26,8 +26,14 @@ router.get('/obtener-vuelo/:id?', vueloController.getVuelo);
 //actualizar informacion del vuelo
 router.put('/actualizar-vuelo/:id?', vueloController.updateVuelo);
 
+//buscar vuelos
+router.get('/buscar', vueloController.getVueloInfo);
+
 //eliminar informacion del vuelo
-router.delete('/eliminar-vuelo/:id?', vueloController.deleteVuelo);
+router.delete('/eliminar-vuelo/:id?',vueloController.deleteVuelo);
+
+//obtener el ultimo numero de vuelo
+router.get('/ultimo-numero-vuelo', vueloController.getUltimoNumeroVuelo);
 
 //======== USUARIOS =========//
 
