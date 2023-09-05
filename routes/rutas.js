@@ -4,6 +4,7 @@ const router = express.Router();
 const vueloController = require('../controllers/vuelos.controller');
 const userController = require('../controllers/usuario.controller');
 const authController = require('../auth/auth.controller');
+const pasajeroController = require('../controllers/pasajeros.controller');
 
 //======== LOGIN =========//
 //registrar usuario
@@ -51,5 +52,22 @@ router.put('/actualizar-usuario/:id', userController.updateUsuario);
 
 //Eliminar informacion de un usuario
 router.delete('/eliminar-usuario/:id', userController.deleteUsuario);
+
+//======== PASAJEROS =========//
+
+//guardar informacion del pasajero
+router.post('/guardar-pasajero', pasajeroController.savePasajero);
+
+//obtener informacion de los pasajeros
+router.get('/obtener-pasajeros', pasajeroController.getPasajeros);
+
+//obtener informacion del pasajero
+router.get('/obtener-pasajero/:id?', pasajeroController.getPasajero);
+
+//actualizar informacion del pasajero
+router.put('/actualizar-pasajero/:id?', pasajeroController.updatePasajero);
+
+//eliminar informacion del pasajero
+router.delete('/eliminar-pasajero/:id?',pasajeroController.deletePasajero);
 
 module.exports = router;

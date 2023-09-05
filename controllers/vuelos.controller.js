@@ -19,6 +19,8 @@ var vueloController = {
             // vuelo.pasajeros.numeroAsiento = params.numeroAsiento;
             // vuelo.pasajeros.costo = params.costo;
             vuelo.costoMaletaAdicional = params.costoMaletaAdicional;
+            vuelo.clase = params.clase;
+            vuelo.numAsientos = params.numAsientos;
             vuelo.estado = params.estado;
             vuelo.disponibilidad = params.disponibilidad;
 
