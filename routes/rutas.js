@@ -5,6 +5,7 @@ const vueloController = require('../controllers/vuelos.controller');
 const userController = require('../controllers/usuario.controller');
 const authController = require('../auth/auth.controller');
 const pasajeroController = require('../controllers/pasajeros.controller');
+const pagoController = require('../controllers/pago.controller');
 
 //======== LOGIN =========//
 //registrar usuario
@@ -69,5 +70,8 @@ router.put('/actualizar-pasajero/:id?', pasajeroController.updatePasajero);
 
 //eliminar informacion del pasajero
 router.delete('/eliminar-pasajero/:id?',pasajeroController.deletePasajero);
+
+
+router.post('/guardar-pago', pagoController.savePago);
 
 module.exports = router;
