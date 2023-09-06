@@ -19,6 +19,8 @@ var vueloController = {
             // vuelo.pasajeros.numeroAsiento = params.numeroAsiento;
             // vuelo.pasajeros.costo = params.costo;
             vuelo.costoMaletaAdicional = params.costoMaletaAdicional;
+            vuelo.clase = params.clase;
+            vuelo.numAsientos = params.numAsientos;
             vuelo.estado = params.estado;
             vuelo.disponibilidad = params.disponibilidad;
 
@@ -43,15 +45,12 @@ var vueloController = {
             return res.status(500).send({ message: 'Error al obtener los datos' });
         }
     },
+    //obtener vuelo especifico, busqueda
     getVueloInfo: function (req, res) {
         var origen = req.query.origen;
         var destino = req.query.destino;
         var fechaSalida = req.query.fechaSalida;
-    
-        // Puedes validar aquí si al menos uno de los parámetros está presente
-    
         var query = {};
-    
         if (origen) {
             query.origen = { $regex: origen, $options: 'i' };
         }
@@ -61,7 +60,6 @@ var vueloController = {
         if (fechaSalida) {
             query.fechaSalida = { $regex: fechaSalida, $options: 'i' };
         }
-    
         Vuelo.find(query)
             .then(vuelos => {
                 if (!vuelos || vuelos.length === 0) {

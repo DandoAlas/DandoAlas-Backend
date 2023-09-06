@@ -7,14 +7,10 @@ const userController = {
         try {
             var usuario = new Usuario();
             var params = req.body;
-            usuario.nombre = params.nombre;
-            usuario.apellido = params.apellido;
-            usuario.nacimiento = params.nacimiento;
+            usuario.nombreApellido = params.nombreApellido;
             usuario.correo = params.correo;
-            usuario.identificacion = params.identificacion;
+            usuario.cedula = params.cedula;
             usuario.telefono = params.telefono;
-            //usuario.vueloReservados = params.vueloReservados;
-            //usuario.metodosDePago = params.metodosDePago
             var usuarioStored = await usuario.save();
 
             if (!usuarioStored) {
