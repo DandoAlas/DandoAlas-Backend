@@ -104,19 +104,43 @@ var vueloController = {
     },
 
     // Eliminar vuelo
-    deleteVuelo: async function (req, res) {
-        try {
-            var vueloId = req.params.id;
-            var vuelo = await Vuelo.findByIdAndDelete(vueloId);
+   // Eliminar vuelo
+   deleteVuelo: async function (req, res) {
+    console.log("Intento de eliminar vuelo con ID:", req.params.id);
 
-            if (!vuelo) {
-                return res.status(404).send({ message: 'No se encontro el vuelo' });
-            }
-            return res.status(200).send({ vuelo });
-        } catch (err) {
-            return res.status(500).send({ message: 'Error al eliminar los datos' });
+    try {
+        var vueloId = req.params.id;
+
+        // Intentamos encontrar el vuelo primero
+        var vuelo = await Vuelo.findById(vueloId);
+
+        if (!vuelo) {
+            console.log("No se encontró el vuelo con ID:", vueloId);
+            return res.status(404).send({ message: 'No se encontro el vuelo' });
         }
-    },
+
+        console.log("Objeto vuelo encontrado:", vuelo);  // <-- Agregado para inspeccionar el objeto
+
+        // Si el vuelo se encuentra, intentamos eliminarlo
+        var resultado = await Vuelo.findByIdAndDelete(vueloId);
+
+        if (!resultado) {
+            console.log("No se pudo eliminar el vuelo con ID:", vueloId);
+            return res.status(500).send({ message: 'No se pudo eliminar el vuelo' });
+        }
+
+        console.log("Vuelo eliminado con éxito:", vueloId);
+        return res.status(200).send({ vuelo });
+    } catch (err) {
+        console.error("Error al eliminar el vuelo:", err);
+        return res.status(500).send({ message: 'Error al eliminar los datos' });
+    }
+}
+
+,
+
+
+
     //ultimo vuelo
     getUltimoNumeroVuelo: async function (req, res) {
         try {
