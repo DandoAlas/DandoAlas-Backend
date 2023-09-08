@@ -37,6 +37,10 @@ router.delete('/eliminar-vuelo/:id?',vueloController.deleteVuelo);
 //obtener el ultimo numero de vuelo
 router.get('/ultimo-numero-vuelo', vueloController.getUltimoNumeroVuelo);
 
+//Editar vuelos 
+router.put('/vuelo/:id', vueloController.actualizarVuelo);
+
+
 //======== USUARIOS =========//
 
 //guardar informacion del usuario
