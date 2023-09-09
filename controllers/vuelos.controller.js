@@ -45,11 +45,12 @@ var vueloController = {
             return res.status(500).send({ message: 'Error al obtener los datos' });
         }
     },
+
     //obtener vuelo especifico, busqueda
     getVueloInfo: function (req, res) {
         var origen = req.query.origen;
         var destino = req.query.destino;
-        var fechaSalida = req.query.fechaSalida;
+        var fechaSalida = req.query.fechaSalida;    
         var query = {};
         if (origen) {
             query.origen = { $regex: origen, $options: 'i' };
@@ -60,6 +61,7 @@ var vueloController = {
         if (fechaSalida) {
             query.fechaSalida = { $regex: fechaSalida, $options: 'i' };
         }
+
         Vuelo.find(query)
             .then(vuelos => {
                 if (!vuelos || vuelos.length === 0) {
@@ -104,7 +106,6 @@ var vueloController = {
     },
 
     // Eliminar vuelo
-   // Eliminar vuelo
    deleteVuelo: async function (req, res) {
     console.log("Intento de eliminar vuelo con ID:", req.params.id);
 
@@ -128,19 +129,13 @@ var vueloController = {
             console.log("No se pudo eliminar el vuelo con ID:", vueloId);
             return res.status(500).send({ message: 'No se pudo eliminar el vuelo' });
         }
-
         console.log("Vuelo eliminado con éxito:", vueloId);
         return res.status(200).send({ vuelo });
     } catch (err) {
         console.error("Error al eliminar el vuelo:", err);
         return res.status(500).send({ message: 'Error al eliminar los datos' });
     }
-}
-
-,
-
-
-
+},
     //ultimo vuelo
     getUltimoNumeroVuelo: async function (req, res) {
         try {
@@ -156,6 +151,5 @@ var vueloController = {
             res.status(500).json({ mensaje: 'Error al obtener el último número de vuelo' });
         }
     }
-
 }
 module.exports = vueloController;
