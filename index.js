@@ -14,3 +14,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/Areopuerto')
         })
     })
     .catch(err => console.log(err));
+    
+process.on('SIGINT', () => {
+    mongoose.connection.close(() => {
+        console.log(`Mongoose disconnected by app termination`);
+        process.exit(0);
+    });
+});
