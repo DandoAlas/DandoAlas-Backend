@@ -6,6 +6,7 @@ const userController = require('../controllers/usuario.controller');
 const authController = require('../auth/auth.controller');
 const pasajeroController = require('../controllers/pasajeros.controller');
 const pagoController = require('../controllers/pago.controller');
+const paymentController = require('../controllers/payment.controller');
 
 //======== LOGIN =========//
 //registrar usuario
@@ -73,5 +74,10 @@ router.delete('/eliminar-pasajero/:id?',pasajeroController.deletePasajero);
 
 
 router.post('/guardar-pago', pagoController.savePago);
+
+//PAYPAL
+router.get('/create-order', paymentController.createOrder);
+router.get('/capture-order', paymentController.captureOrder);
+router.get('/cancel-order', paymentController.cancelOrder);
 
 module.exports = router;
