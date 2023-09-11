@@ -1,4 +1,5 @@
 const axios = require('axios');
+const transporter = require('../mail/mailer')
 const PAYPAL_API = 'https://api-m.sandbox.paypal.com';
 const PAYPAL_API_CLIENT = 'AQpHDVdKE3lryT5PDUkrhFvyaGPSxBk4yxaNqo9nmaYon-AXFaORqo8-bqtWANJg_3ToMPFhkU-4rDIu';
 const PAYPAL_API_SECRET = 'EEMecI2eDx6K1qWcJi0zgAmcOYf9kiz40WQzgRAdDFrQU-toiIMz1L9pWxrXl_onLlJkaf3omq7nDdGx';
@@ -11,7 +12,7 @@ const paymentController = {
                 {
                     amount: {
                         currency_code: 'USD',
-                        value: '100.00'
+                        value: req.body.value
                     }
                 },
             ],
@@ -43,15 +44,18 @@ const paymentController = {
 
     captureOrder: async (req, res) => {
         const { token } = req.query;
-        
+
         const response = await axios.post(`${PAYPAL_API}/v2/checkout/orders/${token}/capture`, {}, {
             auth: {
-                username:  PAYPAL_API_CLIENT,
+                username: PAYPAL_API_CLIENT,
                 password: PAYPAL_API_SECRET
             }
         })
-        return res.send('payed');
+        // return res.send('payed');
+        return res.send('<script>window.close();</script>');
+        
     },
+
     cancelOrder: async (req, res) => {
         res.json('cancel order');
     }

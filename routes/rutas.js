@@ -76,7 +76,7 @@ router.delete('/eliminar-pasajero/:id?',pasajeroController.deletePasajero);
 router.post('/guardar-pago', pagoController.savePago);
 
 //PAYPAL
-router.get('/create-order', paymentController.createOrder);
+router.post('/create-order', paymentController.createOrder);
 router.get('/capture-order', paymentController.captureOrder);
 router.get('/cancel-order', paymentController.cancelOrder);
 

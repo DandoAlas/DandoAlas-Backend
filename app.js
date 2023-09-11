@@ -1,9 +1,17 @@
 'use strict'
 var express = require('express');
+var cors = require('cors');
 var bodyParser = require('body-parser');
 
 var app = express();
 var concesionario_routes = require('./routes/rutas');
+
+// const corsOptions = {
+//     origin: 'http://localhost:4200',
+//     optionsSuccessStatus: 200, // Algunos navegadores antiguos (IE11, varios navegadores móviles) no admiten status 204
+// };
+
+// app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); //forzando
 
