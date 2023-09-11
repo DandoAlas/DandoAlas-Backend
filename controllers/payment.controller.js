@@ -51,9 +51,42 @@ const paymentController = {
                 password: PAYPAL_API_SECRET
             }
         })
-        // return res.send('payed');
-        return res.send('<script>window.close();</script>');
+
+        res.send('<script>window.close();</script>');
+        res.status(200);
+    },
+
+    sendEmail: async (req, res) => {
+        // const {value} = req.body;
+        // try {
+        //     await transporter.sendMail({
+        //         from: 'Dando Alas <ricardo.teran1816@gmail.com',
+        //         to: 'rikardoteran@gmail.com',
+        //         subject: 'Compra de boleto',
+        //         text: `Hola, gracias por tu compra. Aquí está tu resumen: El total de tu compra es ${value}`,
+        //     });
+        // } catch (error) {
+        //     console.log(error);
+        // }
         
+
+        await transporter.sendMail({
+            from: 'Dando Alas <ricardo.teran1816@gmail.com',
+            to: req.body.email,
+            subject: 'Compra de boleto',
+            text: `Hola ${req.body.name} con identificación ${req.body.cedula}, gracias por tu compra. El total de tu compra es ${req.body.value}`,
+            html: `
+            <h1>Voleto Comprado</h1>
+            <b>Hola ${req.body.name} con identificación ${req.body.cedula}</b>,<br>¡Gracias por tu compra!.
+                <br>Aquí está tu resumen:<br>
+                Precio por boletos: .<br>
+                Impuestos, tasas y recargos: .<br>
+                Asientos de ida: .<br>
+                Asientos de regreso: .<br>
+                El total de tu compra es: ${req.body.value}
+                `
+        });
+        return res.status(200).send('Email sent');
     },
 
     cancelOrder: async (req, res) => {

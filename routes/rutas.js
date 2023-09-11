@@ -80,4 +80,7 @@ router.post('/create-order', paymentController.createOrder);
 router.get('/capture-order', paymentController.captureOrder);
 router.get('/cancel-order', paymentController.cancelOrder);
 
+//EMAIL
+router.post('/send-email', paymentController.sendEmail);
+
 module.exports = router;
