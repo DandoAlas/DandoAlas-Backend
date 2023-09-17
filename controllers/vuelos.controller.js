@@ -61,6 +61,7 @@ var vueloController = {
         if (fechaSalida) {
             query.fechaSalida = { $regex: fechaSalida, $options: 'i' };
         }
+      
         Vuelo.find(query)
             .then(vuelos => {
                 if (!vuelos || vuelos.length === 0) {
@@ -135,6 +136,7 @@ var vueloController = {
         return res.status(500).send({ message: 'Error al eliminar los datos' });
     }
 },
+
     //ultimo vuelo
     getUltimoNumeroVuelo: async function (req, res) {
         try {

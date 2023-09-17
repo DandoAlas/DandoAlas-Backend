@@ -1,7 +1,6 @@
 'use strict';
 const mongoose = require('mongoose');
 const usuarioSchema = new mongoose.Schema({
-  
     nombreApellido: String,
     correo: String,
     cedula: Number,
