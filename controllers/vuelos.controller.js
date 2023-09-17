@@ -152,5 +152,6 @@ var vueloController = {
             res.status(500).json({ mensaje: 'Error al obtener el último número de vuelo' });
         }
     }
+
 }
 module.exports = vueloController;
