@@ -61,7 +61,6 @@ var vueloController = {
         if (fechaSalida) {
             query.fechaSalida = { $regex: fechaSalida, $options: 'i' };
         }
-
         Vuelo.find(query)
             .then(vuelos => {
                 if (!vuelos || vuelos.length === 0) {

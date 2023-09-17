@@ -18,7 +18,6 @@ const vueloSchema = new mongoose.Schema({
   disponibilidad: Boolean
 });
 
-
 const Vuelo = mongoose.model('Vuelo', vueloSchema);
 
 module.exports = Vuelo;
