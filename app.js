@@ -1,7 +1,6 @@
 'use strict'
 var express = require('express');
 var cors = require('cors');
-var bodyParser = require('body-parser');
 
 var app = express();
 var concesionario_routes = require('./routes/rutas');
