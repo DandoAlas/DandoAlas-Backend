@@ -1,24 +1,10 @@
 'use strict';
 const mongoose = require('mongoose');
 const usuarioSchema = new mongoose.Schema({
-  
-    nombre: String,
-    apellido: String,
-    nacimiento: Date,
+    nombreApellido: String,
     correo: String,
-    identificacion: String,
-    telefono: String,
-    vueloReservados: [{
-        numeroVuelo: Number,
-        numeroAsiento: Number,
-        estado: String,
-    }],
-    metodosDePago: [{
-        cuetaPaypal: String,
-        tarjetasCredito: [{
-            numeroTarjeta: String,
-        }],
-    }]
+    cedula: Number,
+    telefono: String
 });
 
 const Usuario = mongoose.model('Usuario', usuarioSchema);
