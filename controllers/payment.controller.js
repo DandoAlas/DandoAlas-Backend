@@ -57,36 +57,45 @@ const paymentController = {
     },
 
     sendEmail: async (req, res) => {
-        // const {value} = req.body;
-        // try {
-        //     await transporter.sendMail({
-        //         from: 'Dando Alas <ricardo.teran1816@gmail.com',
-        //         to: 'rikardoteran@gmail.com',
-        //         subject: 'Compra de boleto',
-        //         text: `Hola, gracias por tu compra. Aquí está tu resumen: El total de tu compra es ${value}`,
-        //     });
-        // } catch (error) {
-        //     console.log(error);
-        // }
-        
-
-        await transporter.sendMail({
-            from: 'Dando Alas <ricardo.teran1816@gmail.com',
-            to: req.body.email,
-            subject: 'Compra de boleto',
-            text: `Hola ${req.body.name} con identificación ${req.body.cedula}, gracias por tu compra. El total de tu compra es ${req.body.value}`,
-            html: `
-            <h1>Voleto Comprado</h1>
-            <b>Hola ${req.body.name} con identificación ${req.body.cedula}</b>,<br>¡Gracias por tu compra!.
-                <br>Aquí está tu resumen:<br>
-                Precio por boletos: .<br>
-                Impuestos, tasas y recargos: .<br>
-                Asientos de ida: .<br>
-                Asientos de regreso: .<br>
-                El total de tu compra es: ${req.body.value}
-                `
-        });
-        return res.status(200).send('Email sent');
+        const {
+            name,
+            cedula,
+            email,
+            value,
+            origen,
+            destino,
+            fechaSalida,
+            horaSalida,
+            duracionVuelo,
+            nombreAerolinea,
+            clase,
+            cantidadPasajeros,
+        } = req.body;
+        try {
+            await transporter.sendMail({
+                from: 'Dando Alas <ricardo.teran1816@gmail.com>',
+                to: email,
+                subject: 'Compra de boleto',
+                text: `Hola ${name} con identificación ${cedula}, gracias por tu compra. El total de tu compra es ${value}`,
+                html: `
+                    <h1>Voleto Comprado</h1>
+                    <img src="https://i.imgur.com/f9Tseq1.jpg" alt="logo" style="width: 200px;">
+                    <br>
+                    <b>Hola ${name} con identificación ${cedula}</b>,<br>¡Gracias por tu compra!.
+                    <br>Aquí está tu resumen:<br>
+                    <div>${origen}, ${destino}-Ecuador</div><br>
+                    <div>Salida: ${fechaSalida} a las ${horaSalida}:00h</div><br>
+                    <div>Duración del viaje: ${duracionVuelo} minutos</div><br>
+                    <div>Operado por: ${nombreAerolinea}</div><br>
+                    <div>Costo total: ${value} dólares</div><br>
+                    <div>Clase: ${clase}</div><br>
+                    <div>Pasajeros: ${cantidadPasajeros}</div><br>
+                `,
+            });
+            return res.status(200).send('Email sent');
+        } catch (error) {
+            console.log(error);
+        }
     },
 
     cancelOrder: async (req, res) => {
